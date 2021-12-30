@@ -1,0 +1,24 @@
+body {
+    padding: 10px;
+}
+.comment {
+    border: 1px solid blue;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 8px;
+}
+.comment-name {
+    font-style: italic;
+    color: #808080c7;
+}
+.comment-comment {
+        font-family: cursive;
+}
+.comment-time {
+    text-align: right;
+    font-weight: 350;
+    font-size: smaller;
+}
+.full-image {
+    border-radius: 5px;
+}

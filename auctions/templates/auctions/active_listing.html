@@ -1,0 +1,27 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+
+  <h3>Active listing on this category.</h3>
+  <ul>
+    {% for listing in active_listings %}
+    <a href="{% url 'listing_page' listing.id %}">
+      <li>{{ listing }}</li>
+    </a>
+    {% empty %}
+      <li><h6>None</h6></li>
+    {% endfor %}
+  </ul>
+
+  <h3>Non active listing on this category</h3>
+  <ul>
+    {% for not_active in non_active_listings %}
+    <a href="{% url 'listing_page' not_active.id %}">
+      <li>{{ not_active}}</li>
+    </a>
+    {% empty %}
+      <li><h6>None</h6></li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

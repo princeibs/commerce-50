@@ -1,0 +1,20 @@
+{% extends 'auctions/layout.html' %}
+
+{%  block body %}
+
+  <h3>Profile details</h3>
+  <ul>
+    <li><h6>Username: {{username}}</h6></li>
+    <li><h6>First Name: {{first_name}}</h6></li>
+    <li><h6>Last Name: {{last_name}}</h6></li>
+    <li><h6>Email: {{email}}</h6></li>
+    <li><h6>Last login: {{last_login}}</h6></li>
+    <li><h6>Date Joined: {{date_joined}}</h6></li>
+  </ul>
+
+  <form action="{% url 'edit_me' %}" method="get">
+    {% csrf_token %}
+    <p><input class="btn btn-primary" type="submit" value="Edit"></p>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+
+  <h2>Categories</h2>
+  <ul>
+
+    <a href="{% url 'active_listing' 'bike' %}"><li>Bike</li></a>
+    <a href="{% url 'active_listing' 'house' %}"><li>House</li></a>
+    <a href="{% url 'active_listing' 'car' %}"><li>Car</li></a>
+    <a href="{% url 'active_listing' 'others' %}"><li>Others</li></a>
+
+  </ul>
+
+{% endblock %}
