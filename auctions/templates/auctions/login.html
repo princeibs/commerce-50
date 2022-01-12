@@ -13,12 +13,12 @@
         {% csrf_token %}
         <div class="mb-4 col-md-8">
           <label for="username-input" class="form-label">Username</label>
-          <input type="text" class="form-control" id="username-input" aria-describedby="emailHelp" placeholder="Enter your username" required>
+          <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter your username" required>
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
         <div class="mb-4 col-md-8">
           <label for="password-input" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password-input" placeholder="Enter your password" required>
+          <input type="password" class="form-control" id="password-input" name="password" placeholder="Enter your password" required>
         </div>
         <div class="mb-4 form-check">
           <input type="checkbox" class="form-check-input" id="remember-me">

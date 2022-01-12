@@ -23,13 +23,13 @@
         </div>
          -->
         <nav class="navbar navbar-expand-md bd-navbar navbar-dark header-background-color">
-            <h5 class="m-auto text-light"> 
+            <div class="m-auto text-light h6"> 
                 {% if user.is_authenticated %}
-                Signed in as <strong>{{ user.username }}</strong>.
+                Signed in as <strong>{{ user.username }}</strong>
                 {% else %}
                 Not signed in
                 {% endif %}
-            </h5>
+            </div>
             <div class="container m-4">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
