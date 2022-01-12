@@ -2,23 +2,36 @@
 
 {% block body %}
 
-    <h2>Login</h2>
+<div class="container col-md-7">
+    <div class="h1 py-4">Login</div>
 
     {% if message %}
-        <div>{{ message }}</div>
+    <div>{{ message }}</div>
     {% endif %}
 
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" required type="text" name="username" placeholder="Username">
+        <div class="mb-4 col-md-8">
+          <label for="username-input" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username-input" aria-describedby="emailHelp" placeholder="Enter your username" required>
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
-        <div class="form-group">
-            <input class="form-control" required type="password" name="password" placeholder="Password">
+        <div class="mb-4 col-md-8">
+          <label for="password-input" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password-input" placeholder="Enter your password" required>
         </div>
-        <input class="btn btn-primary" type="submit" value="Login">
-    </form>
+        <div class="mb-4 form-check">
+          <input type="checkbox" class="form-check-input" id="remember-me">
+          <label class="form-check-label justify-content-end" for="remember-me">Remember me</label>
+        </div>
+        <button type="submit" class="btn mb-3 default-btn-color ">Login</button>
+        <!-- <input class="btn btn-primary" type="submit" value="Login"> -->
+      </form>
 
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+      <div class="p">
+        Don't have an account? <a class="link-underline" href="{% url 'register' %}">Register here.</a>
+      </div>
+</div>
+
 
 {% endblock %}
