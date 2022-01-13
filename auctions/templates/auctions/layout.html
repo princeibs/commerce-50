@@ -39,28 +39,28 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active h5" aria-current="page" href="{% url 'index' %}">Active Listings</a>
+                            <a class="nav-link active h5 pe-4" aria-current="page" href="{% url 'index' %}">Home</a>
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link h5" href="{% url 'logout' %}">Log Out</a>
+                            <a class="nav-link h5 pe-4" href="{% url 'logout' %}">Log Out</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link h5" href="{% url 'login' %}">Log In</a>
+                            <a class="nav-link h5 pe-4" href="{% url 'login' %}">Log In</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link h5" href="{% url 'register' %}">Register</a>
+                            <a class="nav-link h5 pe-4" href="{% url 'register' %}">Register</a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link h5" href="{% url 'categories' %}">Categories</a>
+                            <a class="nav-link h5 " href="{% url 'categories' %}">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link h5" href="{% url 'watchlist' %}">Watchlist</a>
+                            <a class="nav-link h5 pe-4" href="{% url 'watchlist' %}">Watchlist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link h5" href="{% url 'create_listing' %}">Create Listing</a>
+                            <a class="nav-link h5 pe-4" href="{% url 'create_listing' %}">Create Listing</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link h5" href="{% url 'profile' %}">Profile</a>

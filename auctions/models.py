@@ -1,3 +1,4 @@
+from turtle import ondrag
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -58,7 +59,7 @@ class Winner(models.Model):
         return f"{self.name} won - {self.win}"
 
 class Category(models.Model):
-    auction = models.ForeignKey(Auction, on_delete=models.CASCADE)
+    auction = models.ForeignKey(Auction, default="Others", on_delete=models.CASCADE)
     category = models.CharField(max_length=64)
 
     def __str__(self):
