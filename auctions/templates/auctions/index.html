@@ -3,9 +3,11 @@
 {% block body %}
 <div class="container col-md-7">
     <div class="container">
-        <div class="h2 pt-5 pb-4">Active Listing <hr></div>
+        <div class="h2 pt-5 pb-4">Active Listing
+            <hr>
+        </div>
     </div>
-    
+
     {% for auction in active_auctions %}
     <div class="card mb-2" style="max-width: 540px;">
         <div class="row no-gutters">
@@ -33,24 +35,29 @@
                     <h6>
                         <div class="card-text">Category: {{ auction.catg }}<divp>
                     </h6>
-                    <p class="card-text"><small class="text-muted">Last updated: {{ auction.time|timesince }} ago</small></p>
+                    <p class="card-text"><small class="text-muted">Last updated: {{ auction.time|timesince }}
+                            ago</small></p>
                 </div>
             </div>
         </div>
     </div>
     {% empty %}
-    <ul>
-        <li>
-            <h6>None</h6>
-        </li>
-    </ul>
+
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <p>There is no active listing in the database yet.</p>
+            <p>You can create one <a class="link-underline" href="{% url 'create_listing' %}">Here</a></p>
+        </blockquote>
+    </figure>
     {% endfor %}
 </div>
 
 
 <div class="container col-md-7">
     <div class="container">
-        <div class="h2 pt-5 pb-4">Closed Listing <hr></div>
+        <div class="h2 pt-5 pb-4">Closed Listing
+            <hr>
+        </div>
     </div>
     {% for auction in closed_auctions %}
     <div class="card mb-2" style="max-width: 540px;">
@@ -72,38 +79,18 @@
                     <h6>
                         <p class="card-text">Category: {{ auction.catg }}</p>
                     </h6>
-                    <p class="card-text"><small class="text-muted">Last updated: {{ auction.time|timesince }}</small></p>
+                    <p class="card-text"><small class="text-muted">Last updated: {{ auction.time|timesince }}</small>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     {% empty %}
-    <ul>
-        <li>
-            <h6>None</h6>
-        </li>
-    </ul>
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <p>No has been listing closed yet. Check back later.</p>
+        </blockquote>
+    </figure>
     {% endfor %}
 </div>
 {% endblock %}
-
-
-
-
-<!--
-      <ol>
-        {% for auction in auctions %}
-          <li>
-            <div class="auctions">
-              <ul>
-                <span class="image"><img src=" {{ auction.image }}" alt="listing_img"></span>
-                <span class="title">{{ auction.title }}</span>
-                <span class="description">{{ auction.description }}</span>
-                <li>Bid: {{ auction.starting_bid }}</li>
-                <li>Category: {{ auction.category }}</li>
-              </ul>
-            </div>
-          </li>
-        {% endfor %}
-      </ol>
-  -->
