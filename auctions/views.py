@@ -14,8 +14,8 @@ from .models import *
 def index(request):
     context = {
         # Return the active listings
-        "active_auctions": Auction.objects.filter(is_active=True).all(),
-        "closed_auctions": Auction.objects.filter(is_active=False).all()
+        "active_auctions": Auction.objects.filter(is_active=True).order_by('-time').all(),
+        "closed_auctions": Auction.objects.filter(is_active=False).order_by('-time').all()
     }
     return render(request, "auctions/index.html", context)
 
