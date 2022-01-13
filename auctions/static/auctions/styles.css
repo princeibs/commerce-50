@@ -56,3 +56,8 @@ body {
 .css-label-bg {
     background-color: rgb(213, 222, 231) ;
 }
+
+.listing-img-small {
+    height: 250px;
+    width: 200px;
+}

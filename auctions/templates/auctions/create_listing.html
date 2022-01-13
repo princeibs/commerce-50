@@ -7,9 +7,10 @@
     <div class="h2">Create Listing</div>
 
     <form class="pt-4 g-3" action="{% url 'create_listing' %}" method="post">
+        {% csrf_token %}
         <div class="pt-2 border border-1 border-secondary rounded-top rounded-4 mb-4 col-md-8 css-label-bg">
             <label for="name-input" class=" form-label form-label-size ps-3">Name</label>
-            <input type="email" class="form-control form-control-lg" id="name-input" name="title" required>
+            <input type="text" class="form-control form-control-lg" id="name-input" name="name" required>
         </div>
         <div class="pt-3 border border-1 border-secondary rounded-top rounded-4 mb-4 col-md-8 css-label-bg">
             <label for="desctiption-input" class="form-label form-label-size ps-3">Description</label>
