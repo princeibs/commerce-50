@@ -1,35 +1,42 @@
 {% extends 'auctions/layout.html' %}
 
 {% block body %}
-  <h2>Create Listings</h2>
-  <form action="{% url 'create_listing' %}" method="post">
-    {% csrf_token %}
 
-      <div class="form_group">
-        <label for="">Title</label>
-        <input class="form-control" type="text" name="title" required>
-      </div>
-      <div class="form_group">
-        <label for="">Description</label>
-        <textarea class="form-control" name="description" rows="8" cols="80" required></textarea>
-      </div>
-      <div class="form_group">
-        <label for="">Starting Bid</label>
-        <input class="form-control" type="number" name="starting_bid" value="0" min="0" required>
-      </div>
-      <div class="form_group">
-        <label for="">Image URL</label>
-        <input class="form-control" type="url" name="img_url">
-      </div>
-      <div class="form_group">
-        <label for="category">Category</label>
-        <select class="form-control" name="category">
-          <option value="house">House</option>
-          <option value="car">Car</option>
-          <option value="bike">Bike</option>
-          <option value="others">Others</option>
-        </select>
-      </div>
-      <input class="btn btn-primary" type="submit" value="Submit">
-  </form>
+
+<div class="mt-5 container col-md-7">
+    <div class="h2">Create Listing</div>
+
+    <form class="pt-4 g-3" action="{% url 'create_listing' %}" method="post">
+        <div class="pt-2 border border-1 border-secondary rounded-top rounded-4 mb-4 col-md-8 css-label-bg">
+            <label for="name-input" class=" form-label form-label-size ps-3">Name</label>
+            <input type="email" class="form-control form-control-lg" id="name-input" name="title" required>
+        </div>
+        <div class="pt-3 border border-1 border-secondary rounded-top rounded-4 mb-4 col-md-8 css-label-bg">
+            <label for="desctiption-input" class="form-label form-label-size ps-3">Description</label>
+            <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+            <textarea class="form-control form-control-lg" id="desctiption-input" name="description" rows="4"
+                required></textarea>
+        </div>
+        <div class="pt-2 border border-1 border-secondary rounded-top rounded-4 mb-4 col-md-8 css-label-bg">
+            <label for="img-url-input" class="form-label form-label-size ps-3">Image URL</label>
+            <input type="url" class="form-control form-control-lg" id="img-url-input" name="img-url" required>
+        </div>
+        <div class="pt-2 border border-1 border-secondary rounded-top rounded-4 mb-4 col-md-8 css-label-bg">
+            <label for="starting-bit-input" class="form-label form-label-size ps-3">Starting Bid</label>
+            <input class="form-control form-control-lg" type="number" id="starting-bit-input" name="starting-bid"
+                value="0" min="0" required>
+        </div>
+        <div class="pt-2 border border-1 border-secondary rounded-top rounded-4 mb-4 col-md-8 css-label-bg">
+            <label for="category-select" class="form-label form-label-size ps-3">Select Catetory</label>
+            <select id="catetory-input" class="form-select form-control-lg" name="category">
+                <option selected>Select Category</option>
+                <option value="house">House</option>
+                <option value="car">Car</option>
+                <option value="bike">Bike</option>
+                <option value="others">Others</option>
+            </select>
+        </div>
+        <button type="submit" class="btn mb-3 default-btn-color btn-lg">Create</button>
+    </form>
+</div>
 {% endblock %}

@@ -12,19 +12,19 @@
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         <div class="mb-4 col-md-8">
-          <label for="username-input" class="form-label">Username</label>
-          <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter your username" required>
+          <label for="username-input" class="form-label form-label-size">Username</label>
+          <input type="text" class="form-control form-control-lg id="username" name="username" aria-describedby="emailHelp" placeholder="Enter your username" required>
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
         <div class="mb-4 col-md-8">
-          <label for="password-input" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password-input" name="password" placeholder="Enter your password" required>
+          <label for="password-input" class="form-label form-label-size">Password</label>
+          <input type="password" class="form-control form-control-lg" id="password-input" name="password" placeholder="Enter your password" required>
         </div>
         <div class="mb-4 form-check">
           <input type="checkbox" class="form-check-input" id="remember-me">
           <label class="form-check-label justify-content-end" for="remember-me">Remember me</label>
         </div>
-        <button type="submit" class="btn mb-3 default-btn-color ">Login</button>
+        <button type="submit" class="btn mb-3 default-btn-color btn-lg">Login</button>
         <!-- <input class="btn btn-primary" type="submit" value="Login"> -->
       </form>
 

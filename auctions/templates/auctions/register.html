@@ -11,23 +11,23 @@
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <div class="mb-4 col-md-8">
-            <label for="username-input" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp"
+            <label for="username-input" class="form-label form-label-size">Username</label>
+            <input type="text" class="form-control form-control-lg" id="username" name="username" aria-describedby="emailHelp"
                 placeholder="Enter your username" required>
             <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
         <div class="mb-4 col-md-8">
-            <label for="email-input" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            <label for="email-input" class="form-label form-label-size">Email</label>
+            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email" required>
         </div>
         <div class="mb-4 col-md-8">
-            <label for="password-input" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password"
+            <label for="password-input" class="form-label form-label-size">Password</label>
+            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter your password"
                 required>
         </div>
         <div class="mb-4 col-md-8">
-            <label for="confirmation-input" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="confirmation" name="confirmation"
+            <label for="confirmation-input" class="form-label form-label-size">Confirm Password</label>
+            <input type="password" class="form-control form-control-lg" id="confirmation" name="confirmation"
                 placeholder="Confirm your password" required>
         </div>
         <div class="mb-4 form-check">

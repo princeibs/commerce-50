@@ -75,10 +75,10 @@ def register(request):
 def create_listing(request):
     if request.method == "POST":
         # Get the details submitted from the form
-        title = request.POST["title"]
+        title = request.POST["name"]
         desc = request.POST["description"]
-        s_bid = request.POST["starting_bid"]
-        img = request.POST["img_url"]
+        s_bid = request.POST["starting-bid"]
+        img = request.POST["img-url"]
         catg = request.POST["category"]
 
         # Save details into respective model in the database.

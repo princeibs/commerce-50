@@ -46,4 +46,13 @@ body {
   background-color: rgb(186, 186, 229);
   color: white;
   text-align: center;
+  display: block;
+}
+
+.form-label-size {
+    font-size: 20px;;
+}
+
+.css-label-bg {
+    background-color: rgb(213, 222, 231) ;
 }
