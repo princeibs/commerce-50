@@ -19,8 +19,8 @@
   <p class="full-image"><img src="{{ auction.image }}" alt=""></p>
   <p class="full-description"id="description">{{ auction.description }}</p>
   <h3 id= "starting_bid">${{ auction.starting_bid }}</h3>
-  <h5 id= "highest_bid">Highest Bid: ${{ auction.highest_bid }}</h5>
-  <p id="bids">{{ bids }} bid(s) so far.</p>
+  <h5 id= "highest_bid">Highest Bid: ${{ auction.highest_bid|default_if_none:"0" }}</h5>
+  <p id="bids">{{ bids }} bid{{ bids|pluralize }} so far.</p>
 
   {% if not is_active %}
     <input  id="closed" class="btn btn-primary" value="Closed">
@@ -74,10 +74,10 @@
   <h3>Comments</h3>
   {% for comment in comments %}
     <div class="comment">
-      <h5 class="comment-name">{{comment.name}}</h5>
+      <h5 class="comment-name">{{ comment.name }}</h5>
       <hr>
-      <p class="comment-comment">{{comment.comment}}</p>
-      <p class="comment-time">{{comment.timestamp}}</p>
+      <p class="comment-comment">{{ comment.comment }}</p>
+      <p class="comment-time">{{ comment.timestamp|timesince }} ago</p>
     </div>
   {% endfor %}
   <hr>

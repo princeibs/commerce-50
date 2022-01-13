@@ -15,7 +15,7 @@
                         <h5 class="card-title link-underline">{{ auction.title }}</h5>
                     </a>
                     <h6>
-                        <p class="card-text">{{ auction.description }}</p>
+                        <p class="card-text">{{ auction.description|truncatewords:"10" }}</p>
                     </h6>
                     {% if auction.highest_bid %}
                     <h6>
@@ -29,7 +29,7 @@
                     <h6>
                         <p class="card-text">Category: {{ auction.catg }}</p>
                     </h6>
-                    <p class="card-text"><small class="text-muted">Last updated: {{ auction.time }}</small></p>
+                    <p class="card-text"><small class="text-muted">Last updated: {{ auction.time|timesince }} ago</small></p>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                     <h6>
                         <p class="card-text">Category: {{ auction.catg }}</p>
                     </h6>
-                    <p class="card-text"><small class="text-muted">Last updated: {{ auction.time }}</small></p>
+                    <p class="card-text"><small class="text-muted">Last updated: {{ auction.time|timesince }}</small></p>
                 </div>
             </div>
         </div>
