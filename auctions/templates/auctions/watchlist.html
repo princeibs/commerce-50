@@ -2,15 +2,23 @@
 
 {% block body %}
 
-    <h3>Added Listings</h3>
-    <ul>
-      {% for watchlist in watchlists %}
-        <a href="{% url 'listing_page' watchlist.id %}">
-          <li>{{ watchlist }}</li>
-        </a>
-      {% empty %}
-        <h6><li>No listing in your watchlist</li></h6>
-      {% endfor %}
+<div class="container col-md-7 mt-5">
+    <div class="h2">Watchlist
+        <hr>
+        <p class="lead">This page contains listings you have added to your watchlist</p>
+    </div>
+    <ul class="list-group col-md-10">
+        {% for listing in watchlist %}
+        <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+            <a class="ms-3 link-underline" href="{% url 'listing_page' listing.id %}">{{ listing.name }}</a>
+        </li>
+        {% empty %}
+        <div class="mt-3">-
+            <em><mark>You have not added any item to your watchlist yet</mark></em>
+        </div>
+        {% endfor %}
+
     </ul>
+</div>
 
 {% endblock %}

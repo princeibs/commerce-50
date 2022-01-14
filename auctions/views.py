@@ -202,12 +202,12 @@ def unbid(request, auction_id):
 def watchlist(request):
     try:
         # Get all of the logged in user's watchlist
-        watchlists = WatchList.objects.get(name=request.user).auctions.all()
+        watchlist = WatchList.objects.get(name=request.user).auctions.all()
     except WatchList.DoesNotExist:
         return render(request, "auctions/watchlist.html", {"message": "No watchlist added yet"})
 
     context = {
-        "watchlists": watchlists,
+        "watchlist": watchlist,
     }
     return render(request, "auctions/watchlist.html", context)
 
