@@ -4,7 +4,8 @@
 
 
 <div class="mt-5 container col-md-7">
-    <div class="h2">Create Listing</div>
+    <div class="h2">Create Listing</div><hr>
+    <p class="lead">Create a new listing here</p>
 
     <form class="pt-4 g-3" action="{% url 'create_listing' %}" method="post">
         {% csrf_token %}
