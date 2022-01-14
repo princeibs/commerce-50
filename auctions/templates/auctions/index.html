@@ -68,13 +68,13 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <a href="{% url 'listing_page' auction.id %}" class="link-underline">
-                        <h5 class="card-title">{{ auction.title }}</h5>
+                        <h5 class="card-title">{{ auction.name }}</h5>
                     </a>
                     <h6>
                         <p class="card-text">{{ auction.description }}</p>
                     </h6>
                     <h6>
-                        <p class="card-text">${{ auction.starting_bid }}</p>
+                        <p class="card-text h2">${{ auction.starting_bid }}</p>
                     </h6>
                     <h6>
                         <p class="card-text">Category: {{ auction.catg }}</p>

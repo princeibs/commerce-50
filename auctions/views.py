@@ -264,6 +264,8 @@ def active_listing(request, category):
     active_listings = listings.filter(is_active=True)
     non_active_listings = listings.filter(is_active=False)
     context = {
+        "category_name": category.name,
+        "listings": listings, 
         "active_listings": active_listings,
         "non_active_listings": non_active_listings
     }
