@@ -247,9 +247,9 @@ def comment(request, auction_id):
         return HttpResponseRedirect(reverse("listing_page", args=(auction_id,)))
 
 def categories(request):
-    categories = Category.objects.distinct()
+    categories = list(set(Category.objects.all()))
     context = {
-        "categories": list(set(categories))
+        "categories": categories
     }
     return render(request, "auctions/categories.html", context)
 
