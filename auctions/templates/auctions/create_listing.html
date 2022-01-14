@@ -32,20 +32,9 @@
             <label for="category-select" class="form-label form-label-size ps-3">Select Catetory</label>
             <select id="catetory-input" class="form-select form-control-lg" name="category">
                 <option selected>Select Category</option>
-                <option value="house">House</option>
-                <option value="car">Car</option>
-                <option value="bike">Bike</option>
-                <option value="laptop">Laptop</option>
-                <option value="stock">Stock</option>
-                <option value="tech">Tech</option>
-                <option value="gadgets">Gadgets</option>
-                <option value="antique">Antique</option>
-                <option value="blockchain">Blockchain</option>
-                <option value="food">Food</option>
-                <option value="ride">Ride</option>
-                <option value="aquatic">Aquatic</option>
-                <option value="educational">Educational</option>
-                <option value="others">Others</option>
+                {% for category in categories %}
+                <option value="{{category.name}}">{{category.name|title}}</option>
+                {% endfor %}                            
             </select>
         </div>
         <button type="submit" class="btn mb-3 default-btn-color btn-lg">Create</button>

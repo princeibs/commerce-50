@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <div class="container"></div>
                     <a href="{% url 'listing_page' auction.id %}" class="link-underline pb-3">
-                        <div class="card-title link-underline h4 pb-3">{{ auction.title }}</div>
+                        <div class="card-title link-underline h4 pb-3">{{ auction.name }}</div>
                     </a>
                     <h6>
                         <div class="card-text ">{{ auction.description|truncatewords:"15" }}</div>

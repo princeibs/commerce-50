@@ -19,6 +19,6 @@ urlpatterns = [
     path("my_listings/<str:lister>", views.my_listings, name="my_listings"),
     path("close/<int:auction_id>", views.close, name="close"),
     path("profile", views.profile, name="profile"),
-    path("edit_me", views.edit_me, name="edit_me"),
+    path("edit-profile", views.edit_profile, name="edit_profile"),
     path("unbid/<int:auction_id>", views.unbid, name="unbid")
 ]

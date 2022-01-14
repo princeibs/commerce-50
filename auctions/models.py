@@ -6,18 +6,24 @@ from django.db import models
 class User(AbstractUser):
     pass
 
+class Category(models.Model):
+    name = models.CharField(default='Others', max_length=16)
+
+    def __str__(self):
+        return f"{self.name}"
+
 class Auction(models.Model):
-    title = models.CharField(max_length=64)
+    name = models.CharField(max_length=64)
     description = models.TextField()
     starting_bid = models.IntegerField()
     highest_bid = models.IntegerField(null=True)
     image = models.URLField(blank=True)
-    catg = models.CharField(max_length=64)
+    catg = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='categories')
     is_active = models.BooleanField(default=True)
     time = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return f"{self.title}"
+    def __str__(self):  
+        return f"{self.name}"
 
 class Bid(models.Model):
     name = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -58,9 +64,3 @@ class Winner(models.Model):
     def __str__(self):
         return f"{self.name} won - {self.win}"
 
-class Category(models.Model):
-    auction = models.ForeignKey(Auction, default="Others", on_delete=models.CASCADE)
-    category = models.CharField(max_length=64)
-
-    def __str__(self):
-        return f"{self.category}"

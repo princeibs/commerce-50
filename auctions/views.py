@@ -75,24 +75,23 @@ def register(request):
 def create_listing(request):
     if request.method == "POST":
         # Get the details submitted from the form
-        title = request.POST["name"]
+        name = request.POST["name"]
         desc = request.POST["description"]
         s_bid = request.POST["starting-bid"]
         img = request.POST["img-url"]
         catg = request.POST["category"]
 
         # Save details into respective model in the database.
-        auction = Auction.objects.create(title=title, description=desc, starting_bid=s_bid, image=img, catg=catg)
+        category = Category.objects.get(name=catg)
+        auction = Auction.objects.create(name=name, description=desc, starting_bid=s_bid, image=img, catg=category)
         auction.save()
         lister = Lister.objects.create(name=request.user, auction=auction)
         lister.save
-        category = Category.objects.create(auction=auction, category=catg)
-        category.save()
-
         return HttpResponseRedirect(reverse('index'))
-
     else:
-        return render(request, 'auctions/create_listing.html')
+        return render(request, 'auctions/create_listing.html', {
+            'categories': Category.objects.all()
+        })
 
 def listing_page(request, auction_id):
 
@@ -247,13 +246,21 @@ def comment(request, auction_id):
         return HttpResponseRedirect(reverse("listing_page", args=(auction_id,)))
 
 def categories(request):
-    categories = list(set(Category.objects.all()))
+    categories = Category.objects.all()
+    catg_count = {}
+    for catg in categories:
+        count = Auction.objects.filter(catg=catg).count()
+        catg_count[catg.name] = count
+    print(catg_count)
+    
     context = {
-        "categories": categories
+        "categories": categories,
+        "catg_count": catg_count,
     }
     return render(request, "auctions/categories.html", context)
 
 def active_listing(request, category):
+    category = Category.objects.get(name=category)
     listings = Auction.objects.filter(catg=category)
     active_listings = listings.filter(is_active=True)
     non_active_listings = listings.filter(is_active=False)
@@ -304,7 +311,7 @@ def profile(request):
     return render(request, "auctions/profile.html", context)
 
 @login_required(login_url='login')
-def edit_me(request):
+def edit_profile(request):
     user = request.user
 
     if request.method == "POST":

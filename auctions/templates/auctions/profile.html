@@ -12,7 +12,7 @@
     <li><h6>Date Joined: {{date_joined}}</h6></li>
   </ul>
 
-  <form action="{% url 'edit_me' %}" method="get">
+  <form action="{% url 'edit_profile' %}" method="get">
     {% csrf_token %}
     <p><input class="btn btn-primary" type="submit" value="Edit"></p>
   </form>
