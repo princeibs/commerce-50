@@ -254,7 +254,6 @@ def categories(request):
     print(catg_count)
     
     context = {
-        "categories": categories,
         "catg_count": catg_count,
     }
     return render(request, "auctions/categories.html", context)
