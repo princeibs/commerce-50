@@ -1,39 +1,46 @@
 {% extends 'auctions/layout.html' %}
 
 {% block body %}
-  <h3>Edit profile details</h3>
 
-  {% if message %}
-    <li><h6>{{ message }}</h6></li>
-  {% endif %}
+{% if message %}
+<li>
+    <h6>{{ message }}</h6>
+</li>
+{% endif %}
+<div class="container col-md-7">
+    <div class="h1 py-4">Edit your profile</div>
 
-  <form action="{% url 'edit_me' %}" method="post">
-    {% csrf_token %}
+    {% if message %}
+    <div>{{ message }}</div>
+    {% endif %}
 
-    <div class="form_group">
-      <label for="">First Name </label>
-      <input class="form-control" value="{{first_name}}" type="text" name="first_name" required>
+    <form action="{% url 'edit_profile' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-4 col-md-8">
+            <label for="first-name" class="form-label ">First Name</label>
+            <input type="text" class="form-control form-control-lg" value="{{ first_name}}" id="first-name"
+                name="first_name_input" placeholder="Enter your first name here" autofocus required>
+        </div>
+        <div class="mb-4 col-md-8">
+            <label for="last-name class=" form-label form-label-size">Last Name</label>
+            <input type="text" class="form-control form-control-lg" value="{{ last_name}}" id="last-name"
+                name="last_name_input" placeholder="Enter your last name here" required>
+        </div>
+        <div class="mb-4 col-md-8">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control form-control-lg id="username" value="{{ username }}" name="username_input" aria-describedby="emailHelp" disabled>
+          </div>
+        <div class="mb-4 col-md-8">
+            <label for="email class=" form-label form-label-size">Email</label>
+            <input type="email" class="form-control form-control-lg" value="{{ email }}" id="email" name="email_input"
+                disabled>
+        </div>
+        <button type="submit" class="btn mb-3 default-btn-color btn-lg">Update</button>
+        <!-- <input class="btn btn-primary" type="submit" value="Login"> -->
+    </form>
+
+    <div class="p">
+        Don't have an account? <a class="link-underline" href="{% url 'register' %}">Register here.</a>
     </div>
-    <div class="form_group">
-      <label for="">Last Name </label>
-      <input class="form-control" value="{{ last_name }}" type="text" name="last_name" required>
-    </div>
-    <div class="form_group">
-      <label for="">Email </label>
-      <input class="form-control" value="{{email}}" type="email" name="email" required>
-    </div>
-    <div class="form_group">
-      <label for="">Current Password </label>
-      <input class="form-control" type="password" name="password" required>
-    </div>
-    <div class="form_group">
-      <label for="">New Password </label>
-      <input class="form-control" type="password" name="new_password" required>
-    </div>
-    <div class="form_group">
-      <label for="">Confirm New Password </label>
-      <input class="form-control" type="password" name="confirm_new_password" required>
-    </div>
-    <input class="btn btn-primary" type="submit" value="Submit">
-  </form>
+</div>
 {% endblock %}

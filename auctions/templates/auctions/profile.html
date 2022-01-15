@@ -1,20 +1,46 @@
 {% extends 'auctions/layout.html' %}
 
-{%  block body %}
+{% block body %}
+<div class="container col-md-5 mt-5">
+    <div class="h2">Profile
+        <hr>
+        <p class="lead">Profile details of <mark><em>{{ username }}</em></mark></p>
+    </div>
+    <ul class="list-group col-md-8">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>Username</td>
+                    <td>{{ username }}</td>
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td>{{ first_name}}</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>{{ last_name }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ email }}</td>
+                </tr>
+                <tr>
+                    <td>Last Login</td>
+                    <td>{{ last_login|timesince }} ago</td>
+                </tr>
+                <tr>
+                    <td>Date Joined</td>
+                    <td>{{ date_joined|date:"M d, Y" }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ul>
+    <form action="{% url 'edit_profile' %}" method="get">
+        {% csrf_token %}
+        <p><input class="btn default-btn-color btn-lg" type="submit" value="Edit"></p>
+    </form>
+</div>
 
-  <h3>Profile details</h3>
-  <ul>
-    <li><h6>Username: {{username}}</h6></li>
-    <li><h6>First Name: {{first_name}}</h6></li>
-    <li><h6>Last Name: {{last_name}}</h6></li>
-    <li><h6>Email: {{email}}</h6></li>
-    <li><h6>Last login: {{last_login}}</h6></li>
-    <li><h6>Date Joined: {{date_joined}}</h6></li>
-  </ul>
-
-  <form action="{% url 'edit_profile' %}" method="get">
-    {% csrf_token %}
-    <p><input class="btn btn-primary" type="submit" value="Edit"></p>
-  </form>
 
 {% endblock %}

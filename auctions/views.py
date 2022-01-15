@@ -316,26 +316,16 @@ def edit_profile(request):
     user = request.user
 
     if request.method == "POST":
-        first_name = request.POST["first_name"]
-        last_name = request.POST["last_name"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        new_password = request.POST["new_password"]
-        confirm_new_password = request.POST["confirm_new_password"]
-
-        # Validates the passwords entered
-        if not (user.check_password(password) and (new_password == confirm_new_password)):
-            return render(request, "auctions/edit_me.html", {"message": "Enter valid passwords"})
-        else:
-            user.first_name = first_name
-            user.last_name = last_name
-            user.email = email
-            user.set_password(new_password)
-            user.save()
-
-            return HttpResponseRedirect(reverse("profile"))
+        first_name = request.POST["first_name_input"]
+        last_name = request.POST["last_name_input"]
+        #
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+        return HttpResponseRedirect(reverse("profile"))
     else:
         context = {
+            'username': user.username,
             'first_name': user.first_name,
             'last_name': user.last_name,
             'email': user.email,

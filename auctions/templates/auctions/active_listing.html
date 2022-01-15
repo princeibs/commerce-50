@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<div class="container col-md-7 mt5">
+<div class="container col-md-7 mt-5">
     <div class="h2">{{ category_name|title }}
         <hr>
     </div>
@@ -13,6 +13,10 @@
             <a class="ms-3 link-underline" href="{% url 'listing_page' listing.id %}">{{ listing.name|title }}</a>
             <span class="badge bg-primary rounded-pill">{{ listing.is_active|yesno:"Active,Not active" }}</span>
         </li>
+    </div>
+    {% empty %}
+    <div class="mt-3">-
+        <em><mark>There is no listing in this catetory yet. Check back later...</mark></em>
     </div>
     {% endfor %}
 </div>
