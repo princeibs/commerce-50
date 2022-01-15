@@ -2,95 +2,147 @@
 
 {% block body %}
 
-<h3 id="listing">{{ auction.name }}</h3>
-
-{% if in_watchlist %}
-<form action="{% url 'remove_watchlist' auction.id %}" method="post">
-    {% csrf_token %}
-    <p><input class="btn btn-primary" type="submit" value="Remove from watchlist"></p>
-</form>
-{% else %}
-<form action="{% url 'add_watchlist' auction.id %}" method="post">
-    {% csrf_token %}
-    <p><input class="btn btn-primary" type="submit" value="Add to watchlist"></p>
-</form>
-{% endif %}
-
-<p class="full-image"><img src="{{ auction.image }}" alt=""></p>
-<p class="full-description" id="description">{{ auction.description }}</p>
-<h3 id="starting_bid">${{ auction.starting_bid }}</h3>
-<h5 id="highest_bid">Highest Bid: ${{ auction.highest_bid|default_if_none:"0" }}</h5>
-<p id="bids">{{ bids }} bid{{ bids|pluralize }} so far.</p>
-
-{% if not is_active %}
-<input id="closed" class="btn btn-primary" value="Closed">
-{% else %}
-{% if close %}
-<form action="{% url 'close' auction.id %}" method="post">
-    {% csrf_token %}
-    <input class="btn btn-primary" type="submit" value="Close">
-</form>
-{% else %}
-
-{% if not bidded %}
-<form action="{% url 'bid' auction.id %}" method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        {% if not has_bid %}
-        <input class="form-control" type="number" required name="bid_amount" value="{{ auction.starting_bid }}"
-            placeholder="Enter amount to bid" min="{{ auction.starting_bid }}">
-        {% else %}
-        <input class="form-control" type="number" required name="bid_amount" value="{{ min_bid }}"
-            placeholder="Enter amount to bid" min="{{ min_bid }}">
-        {% endif %}
+<!--  -->
+<div class="container">
+    <div class="h2 mt-4">Listing Details
+        <hr>
     </div>
-    <input class="btn btn-primary" type="submit" value="Bid">
-</form>
-{% else %}
-<form action="{% url 'unbid' auction.id %}" method="post">
-    {% csrf_token %}
-    <input class="btn btn-primary" type="submit" value="Unbid">
-</form>
-{% endif %}
-{% endif %}
-{% endif %}
+    <div class="h3">{{ auction.name }}</div>
+    <div class="row">
+        <div class="col-md-7 mt-3">
+            <div class="border text-center">
+                <div>
+                    <img class="img-fluid border border-warning rounded-3 my-4" src="{{ auction.image }}"
+                        alt="{{ auction.name }}">
+                </div>
+                <div class="row">
 
-<h3>Details</h3>
-<ul>
-    <li>Listed by: <a href="{% url 'my_listings' lister.name %}">{{ lister.name }}</a></li>
-    <ul>
-        {% for bidder in bidders %}
-        <li>{{ bidder }}</li>
-        {% endfor %}
-    </ul>
-    <li>Category: {{ auction.catg }}</li>
-    {% if not is_active %}
-    {% if is_me %}
-    <li>Winner: You Won!</li>
-    {% else %}
-    <li>Winner: {{ winner }}</li>
-    {% endif %}
-    {% endif %}
-</ul>
+                    <!-- Description -->
+                    <div class="col-md-5 text-start ps-4 fs-5">You have not added any listing to your watchlist yet.
+                        Please add some
+                        listing and check back</div>
 
-<h3>Comments</h3>
-{% for comment in comments %}
-<div class="comment">
-    <h5 class="comment-name">{{ comment.name }}</h5>
-    <hr>
-    <p class="comment-comment">{{ comment.comment }}</p>
-    <p class="comment-time">{{ comment.timestamp|timesince }} ago</p>
+                    <!-- Pricing -->
+                    <div class="col-md-7 text-end">
+                        <div class="text-end pe-4 h1">${{ auction.starting_bid }}</div>
+                        <div class="text-end pe-4 h4">Highest Bid: ${{ auction.highest_bid|default_if_none:"0" }}</div>
+                        <div class="text-end pe-4 fs-6">{{ bids }} bid{{ bids|pluralize }} so far</div>
+                    </div>
+                </div>
+
+                <!-- Details -->
+
+                <div class="text-center h5 col-md-3 container pt-3">Details
+                    <hr>
+                </div>
+                <div class="fs-6">Listed by <a class="text-decoration-none"
+                        href="{% url 'my_listings' lister.name %}"><span class="font-monospace">{{ lister.name }}</span></a></div>
+                <div class="fs-6">Category: <span class="font-monospace">{{ auction.catg|title }}</span></div>
+                <div class="fs-6"></div>
+                <div class="fs-6">Bidders:
+                    {% for bidder in bidders %}
+                    <span class="fs-6">{{ bidder }}</span>
+                    {% empty %}
+                    <span class="fs-6 mark border rounded-3 font-monospace">No one has bidded for this listing
+                        yet</span>
+                    {% endfor %}
+                </div>
+
+                <!-- Winner  -->
+
+                {% if not is_active %}
+                {% if is_me %}
+                <div class="text-success">You Won!</div>
+                {% else %}
+                <div class="text-info">Winner: {{ winner }}</div>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Row B -->
+
+        <div class="col-md-3 mt-3">
+
+            <!-- Watchlist -->
+            <div class="mt-2">
+                {% if in_watchlist %}
+                <form action="{% url 'remove_watchlist' auction.id %}" method="post">
+                    {% csrf_token %}
+                    <p><input class="btn btn-primary default-btn-color" type="submit" value="Remove from watchlist"></p>
+                </form>
+                {% else %}
+                <form action="{% url 'add_watchlist' auction.id %}" method="post">
+                    {% csrf_token %}
+                    <p><input class="btn btn-primary default-btn-color" type="submit" value="Add to watchlist"></p>
+                </form>
+                {% endif %}
+            </div>
+
+            <!-- Close -->
+            {% if not is_active %}
+            <input id="closed" class="btn btn-primary default-btn-color" value="Closed">
+            {% else %}
+
+            {% if close %}
+            <form action="{% url 'close' auction.id %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-primary default-btn-color" type="submit" value="Close">
+            </form>
+            {% else %}
+
+            <!-- Bid / Unbid -->
+            {% if not bidded %}
+            <form class="form-group" action="{% url 'bid' auction.id %}" method="post">
+                {% csrf_token %}
+                <div class="row g-3">
+                    {% if not has_bid %}
+                    <div class="col-sm-7"> <input class="form-control form-control-lg" type="number" required
+                            name="bid_amount" value="{{ auction.starting_bid }}" placeholder="Enter amount to bid"
+                            min="{{ auction.starting_bid }}"></div>
+
+                    {% else %}
+                    <div class="col-sm-7"><input class="form-control form-control-lg" type="number" required
+                            name="bid_amount" value="{{ min_bid }}" placeholder="Enter amount to bid"
+                            min="{{ min_bid }}"></div>
+                    {% endif %}
+                    <div class="col-sm-5"><input class="btn btn-primary btn-lg default-btn-color" type="submit" value="Bid"></div>
+                </div>
+            </form>
+            {% else %}
+            <form action="{% url 'unbid' auction.id %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-primary btn-lg default-btn-color" type="submit" value="Unbid">
+            </form>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Comment section -->
+    <div class="row">
+        <div class="col-md-7">
+            <div class="h4 mt-5">Comments
+                <hr>
+            </div>
+            {% for comment in comments %}
+            <div class="comment">
+                <h5 class="comment-name">{{ comment.name }}</h5>
+                <p class="comment-comment">{{ comment.comment }}</p>
+                <p class="comment-time">{{ comment.timestamp|timesince }} ago</p>
+            </div>
+            {% endfor %}
+            <form class="" action="{% url 'comment' auction.id %}" method="post">
+                {% csrf_token %}
+                <div class="form_group">
+                    <textarea class="form-control" name="comment" required placeholder="Make your comment here"></textarea>
+                    <input class="btn btn-primary mt-3 default-btn-color" type="submit" value="Comment">
+            </form>
+        </div>
+       
+    </div>
 </div>
-{% endfor %}
-<hr>
-<form class="" action="{% url 'comment' auction.id %}" method="post">
-    {% csrf_token %}
-    <div class="form_group">
-        <textarea class="form-control" name="comment" required placeholder="Make your comment here"></textarea>
-        <input class="btn btn-primary" type="submit" value="Comment">
-</form>
-
-
 
 
 {% endblock %}
