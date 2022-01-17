@@ -45,7 +45,7 @@
 
     <figure class="text-center">
         <blockquote class="blockquote">
-            <p>There is no active listing in the database yet.</p>
+            <p class="fst-italic">There is no active listing in the database yet.</p>
             <p>You can create one <a class="link-underline" href="{% url 'create_listing' %}">Here</a></p>
         </blockquote>
     </figure>
@@ -88,7 +88,7 @@
     {% empty %}
     <figure class="text-center">
         <blockquote class="blockquote">
-            <p>No listing has been closed yet. Check back later.</p>
+            <p class="fst-italic">No listing has been closed yet. Check back later.</p>
         </blockquote>
     </figure>
     {% endfor %}
