@@ -34,7 +34,7 @@
                     <hr>
                 </div>
                 <div class="fs-6">Listed by <a class="text-decoration-none"
-                        href="{% url 'my_listings' lister.name %}"><span class="font-monospace">{{lister.name}}</span></a></div>
+                        href="{% url 'my_listings' lister.name %}"><span class="font-monospace">@{{lister.name}}</span></a></div>
                 <div class="fs-6">Category: <span class="font-monospace">{{ auction.catg|title }}</span></div>
                 <div class="fs-6"></div>
                 <div class="fs-6">Bidders:
@@ -129,7 +129,7 @@
             </div>
             {% for comment in comments %}
             <div class="comment">
-                <h5 class="comment-name">{{ comment.name }}</h5>
+                <h5 class="comment-name">@{{ comment.name }}</h5>
                 <p class="comment-comment">{{ comment.comment }}</p>
                 <p class="comment-time">{{ comment.timestamp|timesince }} ago</p>
             </div>
